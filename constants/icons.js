@@ -9,6 +9,8 @@ export const transportation = require("../assets/icons/transportation_icon.png")
 export const feeding = require("../assets/icons/feeding_icon.png");
 export const healthcare = require("../assets/icons/healthcare.png");
 export const more = require("../assets/icons/more.png");
+export const calender = require("../assets/icons/calender.png");
+
 
 
 
@@ -23,7 +25,8 @@ export default{
     transportation,
     feeding,
     healthcare,
-    more
+    more,
+    calender
 
 }
 
