@@ -10,6 +10,8 @@ export const feeding = require("../assets/icons/feeding_icon.png");
 export const healthcare = require("../assets/icons/healthcare.png");
 export const more = require("../assets/icons/more.png");
 export const calender = require("../assets/icons/calender.png");
+export const menu = require("../assets/icons/menu.png");
+
 
 
 
@@ -26,7 +28,8 @@ export default{
     feeding,
     healthcare,
     more,
-    calender
+    calender,
+    menu
 
 }
 

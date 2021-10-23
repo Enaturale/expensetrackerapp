@@ -76,6 +76,35 @@ const Home =() => {
         )
     }
 
+    function renderCategoryHeader(){
+        return(
+            <View 
+            style={{flexDirection:'row', justifyContent:'space-between', padding: SIZES.padding,
+                     alignItems:'center'}}
+            >
+                {/* Title */}
+                <View>
+                    <Text>CATEGORIES</Text>
+                    <Text>Total</Text>
+                </View>
+
+                {/* Buttons */}
+                <View style={{flexDirection:'row'}}>
+                    <TouchableOpacity>
+                        <Image source={icons.chart} resizeMode='contain' 
+                               style={{height:20, width: 20}} />
+                    </TouchableOpacity>
+
+                    <TouchableOpacity>
+                        <Image source={icons.menu} resizeMode='contain' 
+                               style={{height:20, width: 20}} />
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+        )
+    }
+
     return(
         <View style={{flex: 1, backgroundColor: COLORS.lightGray}}>
              {/* <Text>Home</Text>  */}
@@ -84,6 +113,9 @@ const Home =() => {
 
              {/* Header Section */}
              {renderHeader()}
+
+             {/* Category in header section */}
+             {renderCategoryHeader()}
         </View>
     )
 }
