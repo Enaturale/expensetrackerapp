@@ -80,23 +80,42 @@ const Home =() => {
         return(
             <View 
             style={{flexDirection:'row', justifyContent:'space-between', padding: SIZES.padding,
-                     alignItems:'center'}}
+                     alignItems:'center', backgroundColor:COLORS.white}}
             >
                 {/* Title */}
                 <View>
-                    <Text>CATEGORIES</Text>
-                    <Text>Total</Text>
+                    <Text style={{color:COLORS.red, ...FONTS.h3}}>CATEGORIES</Text>
+                    <Text style={{color:COLORS.primary, ...FONTS.body4}}>Total</Text>
                 </View>
 
                 {/* Buttons */}
                 <View style={{flexDirection:'row'}}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                    style={{
+                        alignItems:'center',
+                        justifyContent: 'center',
+                        height: 50,
+                        width: 50,
+                        backgroundColor: COLORS.peach,
+                        borderRadius: 25,
+                        
+                    }}
+                    >
                         <Image source={icons.chart} resizeMode='contain' 
                                style={{height:20, width: 20}} />
                     </TouchableOpacity>
 
-                    <TouchableOpacity>
-                        <Image source={icons.menu} resizeMode='contain' 
+                    <TouchableOpacity
+                    style={{
+                        alignItems:'center',
+                        justifyContent: 'center',
+                        height: 50,
+                        width: 50,
+                        backgroundColor: COLORS.peach,
+                        borderRadius: 25,
+                    }}
+                    >
+                        <Image source={icons.menu} resizeMode='contain'
                                style={{height:20, width: 20}} />
                     </TouchableOpacity>
                 </View>
@@ -113,6 +132,14 @@ const Home =() => {
 
              {/* Header Section */}
              {renderHeader()}
+
+             <View 
+             style={{height:10, backgroundColor: COLORS.lightGray}}>
+             </View>
+
+             {/* <View
+             style={{height:10, backgroundColor: COLORS.white}}>
+             </View> */}
 
              {/* Category in header section */}
              {renderCategoryHeader()}
