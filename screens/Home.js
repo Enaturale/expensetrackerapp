@@ -53,11 +53,12 @@ const Home =() => {
               backgroundColor:COLORS.white}}>
                 <View>
                     <Text style={{color: COLORS.red, ...FONTS.h2}}>My Expenses</Text>
-                    <Text style={{color:COLORS.primary,...FONTS.h3}}>Summary (private)</Text>
+                    <Text style={{color:COLORS.primary,...FONTS.h3}}>Check Summary</Text>
                 </View>
 
                 <View style={{flexDirection: 'row', marginTop: SIZES.padding, alignItems:'center'}}>
-                    <View style={{height: 50, width: 50, color: COLORS.lightGray, alignItems:'center'}}>
+                    <View style={{height: 50, width: 50, backgroundColor: COLORS.lightGray, alignItems:'center',
+                         borderRadius:25, justifyContent:'center'}}>
                         <Image
                         source={icons.calender} 
                         style={{
@@ -66,9 +67,9 @@ const Home =() => {
                         }}
                         />
                     </View>
-                    <View>
-                        <Text>22nd of Oct, 2021</Text>
-                        <Text>Saved 10% more than last month</Text>
+                    <View style={{marginLeft: SIZES.padding}}>
+                        <Text style={{color: COLORS.red, ...FONTS.h3}}>22nd of Oct, 2021</Text>
+                        <Text style={{color: COLORS.primary, ...FONTS.h4}}>Saved 10% more than last month</Text>
                     </View>
                 </View>
             </View>
