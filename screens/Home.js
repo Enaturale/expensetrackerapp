@@ -7,6 +7,162 @@ import {COLORS, FONTS, SIZES, icons} from '../constants';
 
 const Home =() => {
 
+    const confirmStatus="C"
+    const pendingStatus="P"
+
+    let Categories =[
+        {
+            id: 1,
+            name: "Clothing",
+            icon: icons.clothing,
+            color:COLORS.peach,
+            expenses:[
+                {
+                id: 1,
+                title: "Shoes",
+                description: "Shoes for Edith's wedding",
+                total: 5000.00,
+                status: confirmStatus,
+                },
+                {
+                    id: 2,
+                    title: "Lace Material",
+                    description: "Aso-ebi for Edith's wedding",
+                    total: 6000.00,
+                    status: confirmStatus,
+                },
+                {
+                    id: 3,
+                    title: "Head tie",
+                    description: "Aso-ebi for Edith's wedding",
+                    total: 3000.00,
+                    status: confirmStatus,
+                },
+                 
+            ]
+        },
+        {
+            id: 2,
+            name: "Feeding",
+            icon: icons.feeding,
+            color: COLORS.purple,
+            expenses: [
+                {
+                    id: 1,
+                    title: "Monday",
+                    description: "Item 7, fish",
+                    total: 1000.00,
+                    status: pendingStatus,
+                    },
+                    {
+                        id: 2,
+                        title: "Lunch on Tuesday",
+                        description: "Lunch with Elizabeth",
+                        total: 600.00,
+                        status: confirmStatus,
+                    },
+                    {
+                        id: 3,
+                        title: "Foodstuffs",
+                        description: "Foodstuffs for weekend",
+                        total: 6000.00,
+                        status: pendingStatus,
+                    },
+
+            ]
+        },
+        {
+            id: 3,
+            name: "Transportation",
+            icon: icons.transportation,
+            color: COLORS.green,
+            expenses: [
+                {
+                    id: 1,
+                    title: "Monday",
+                    description: "Work Duties",
+                    total: 500.00,
+                    status: pendingStatus,
+                    },
+                    {
+                        id: 2,
+                        title: "Pharmacy",
+                        description: "Went to the pharmacy ",
+                        total: 600.00,
+                        status: confirmStatus,
+                    },
+                    {
+                        id: 3,
+                        title: "Market",
+                        description: "Foodstuffs for weekend",
+                        total: 200.00,
+                        status: pendingStatus,
+                    },
+
+            ]
+        },
+        {
+            id: 4,
+            name: "Healthcare",
+            icon: icons.healthcare,
+            color: COLORS.red,
+            expenses: [
+                {
+                    id: 1,
+                    title: "Monthly Checkup",
+                    description: "Monthly Checkup",
+                    total: 3000.00,
+                    status: pendingStatus,
+                    },
+                    {
+                        id: 2,
+                        title: "Drugs",
+                        description: "Drugs for Headaches",
+                        total: 100.00,
+                        status: confirmStatus,
+                    },
+                    {
+                        id: 3,
+                        title: "Cream",
+                        description: "Vagina Cream",
+                        total: 800.00,
+                        status: pendingStatus,
+                    },
+
+            ]
+        },
+        {
+            id: 5,
+            name: "Miscellanous",
+            icon: icons.misc,
+            color: COLORS.indigo,
+            expenses: [
+                {
+                    id: 1,
+                    title: "Monday",
+                    description: "Item 7, fish",
+                    total: 1000.00,
+                    status: pendingStatus,
+                    },
+                    {
+                        id: 2,
+                        title: "Lunch on Tuesday",
+                        description: "Lunch with Elizabeth",
+                        total: 600.00,
+                        status: confirmStatus,
+                    },
+                    {
+                        id: 3,
+                        title: "Foodstuffs",
+                        description: "Foodstuffs for weekend",
+                        total: 6000.00,
+                        status: pendingStatus,
+                    },
+
+            ]
+        }
+    ]
+
     const [viewMode, setViewMode] = useState("chart")
 
     function renderNavBar(){
@@ -101,11 +257,13 @@ const Home =() => {
                         backgroundColor: viewMode == "chart" ? COLORS.peach : null,
                         borderRadius: 25,
                         
+                        
                     }}
                     onPress= {() => setViewMode ("chart")}
                     >
                         <Image source={icons.chart} resizeMode='contain' 
-                               style={{height:20, width: 20}} />
+                               style={{height:20, width: 20
+                               , tintColor:viewMode == "chart" ? COLORS.black : COLORS.deepGray,}} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -116,11 +274,13 @@ const Home =() => {
                         width: 50,
                         backgroundColor: viewMode == "menu" ?COLORS.peach: null,
                         borderRadius: 25,
+                        
                     }}
                     onPress= {() => setViewMode ("menu")}
                     >
                         <Image source={icons.menu} resizeMode='contain'
-                               style={{height:20, width: 20}} />
+                               style={{height:20, width: 20,
+                                tintColor:viewMode == "menu" ? COLORS.black : COLORS.deepGray,}} />
                     </TouchableOpacity>
                 </View>
 
