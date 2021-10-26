@@ -1,5 +1,7 @@
 import React, {useState} from "react";
-import {Text, View, TouchableOpacity, Image} from "react-native";
+import {Text, View, TouchableOpacity, Image, ScrollView, FlatList} from "react-native";
+
+
 
 
 
@@ -15,7 +17,7 @@ const Home =() => {
             id: 1,
             name: "Clothing",
             icon: icons.clothing,
-            color:COLORS.peach,
+           // color:COLORS.peach,
             expenses:[
                 {
                 id: 1,
@@ -45,24 +47,24 @@ const Home =() => {
             id: 2,
             name: "Feeding",
             icon: icons.feeding,
-            color: COLORS.purple,
+           // color: COLORS.purple,
             expenses: [
                 {
-                    id: 1,
+                    id: 4,
                     title: "Monday",
                     description: "Item 7, fish",
                     total: 1000.00,
                     status: pendingStatus,
                     },
                     {
-                        id: 2,
+                        id: 5,
                         title: "Lunch on Tuesday",
                         description: "Lunch with Elizabeth",
                         total: 600.00,
                         status: confirmStatus,
                     },
                     {
-                        id: 3,
+                        id: 6,
                         title: "Foodstuffs",
                         description: "Foodstuffs for weekend",
                         total: 6000.00,
@@ -75,24 +77,24 @@ const Home =() => {
             id: 3,
             name: "Transportation",
             icon: icons.transportation,
-            color: COLORS.green,
+            //color: COLORS.green,
             expenses: [
                 {
-                    id: 1,
+                    id: 7,
                     title: "Monday",
                     description: "Work Duties",
                     total: 500.00,
                     status: pendingStatus,
                     },
                     {
-                        id: 2,
+                        id: 8,
                         title: "Pharmacy",
                         description: "Went to the pharmacy ",
                         total: 600.00,
                         status: confirmStatus,
                     },
                     {
-                        id: 3,
+                        id: 9,
                         title: "Market",
                         description: "Foodstuffs for weekend",
                         total: 200.00,
@@ -105,24 +107,24 @@ const Home =() => {
             id: 4,
             name: "Healthcare",
             icon: icons.healthcare,
-            color: COLORS.red,
+            //color: COLORS.red,
             expenses: [
                 {
-                    id: 1,
+                    id: 10,
                     title: "Monthly Checkup",
                     description: "Monthly Checkup",
                     total: 3000.00,
                     status: pendingStatus,
                     },
                     {
-                        id: 2,
+                        id: 11,
                         title: "Drugs",
                         description: "Drugs for Headaches",
                         total: 100.00,
                         status: confirmStatus,
                     },
                     {
-                        id: 3,
+                        id: 12,
                         title: "Cream",
                         description: "Vagina Cream",
                         total: 800.00,
@@ -135,26 +137,56 @@ const Home =() => {
             id: 5,
             name: "Miscellanous",
             icon: icons.misc,
-            color: COLORS.indigo,
+            //color: COLORS.indigo,
             expenses: [
                 {
-                    id: 1,
+                    id: 13,
                     title: "Monday",
                     description: "Item 7, fish",
                     total: 1000.00,
                     status: pendingStatus,
                     },
                     {
-                        id: 2,
+                        id: 14,
                         title: "Lunch on Tuesday",
                         description: "Lunch with Elizabeth",
                         total: 600.00,
                         status: confirmStatus,
                     },
                     {
-                        id: 3,
+                        id: 15,
                         title: "Foodstuffs",
                         description: "Foodstuffs for weekend",
+                        total: 6000.00,
+                        status: pendingStatus,
+                    },
+
+            ]
+        },
+        {
+            id: 6,
+            name: "Beauty & Care",
+            icon: icons.beauty,
+            //color: COLORS.indigo,
+            expenses: [
+                {
+                    id: 16,
+                    title: "Body Cream",
+                    description: "Antibotic Body Cream",
+                    total: 2000.00,
+                    status: pendingStatus,
+                    },
+                    {
+                        id: 17,
+                        title: "Face Cream",
+                        description: "Acne Cream",
+                        total: 600.00,
+                        status: confirmStatus,
+                    },
+                    {
+                        id: 18,
+                        title: "Soap",
+                        description: "Tumeric and Acne Soap",
                         total: 6000.00,
                         status: pendingStatus,
                     },
@@ -163,6 +195,7 @@ const Home =() => {
         }
     ]
 
+    const[categories, setCategories] = useState(Categories);
     const [viewMode, setViewMode] = useState("chart")
 
     function renderNavBar(){
@@ -243,7 +276,7 @@ const Home =() => {
                 {/* Title */}
                 <View>
                     <Text style={{color:COLORS.red, ...FONTS.h3}}>CATEGORIES</Text>
-                    <Text style={{color:COLORS.primary, ...FONTS.body4}}>Total</Text>
+                    <Text style={{color:COLORS.primary, ...FONTS.body4}}>{categories.length} Total</Text>
                 </View>
 
                 {/* Buttons */}
@@ -288,6 +321,42 @@ const Home =() => {
         )
     }
 
+    function renderCategoryList(){
+        const renderItem=({item}) =>{
+            return(
+                <TouchableOpacity style={{flex:1, flexDirection:'row', margin:5,
+                     paddingVertical: SIZES.radius, 
+                     paddingHorizontal: SIZES.padding,
+                     borderRadius: 5, 
+                     backgroundColor: COLORS.peach,
+                     borderColor: COLORS.primary }}>
+                    <Image 
+                        source={item.icon}
+                        style={{
+                            width: 20,
+                            height: 20,
+                            paddingRight: 2,
+                        }}
+                    />
+                    <Text style={{marginLeft: SIZES.base, color: COLORS.primary}}>{item.name}</Text>
+                </TouchableOpacity>
+            )
+        }
+        return(
+            <View>
+                {/* <Text>Hello</Text> */}
+                <View>
+                    <FlatList 
+                    data={categories}
+                    renderItem={renderItem}
+                    keyExtractor={item => `${item.id}`}   
+                    numColumns={2}                 
+                    />
+                </View>
+            </View>
+        )
+    }
+
     return(
         <View style={{flex: 1, backgroundColor: COLORS.lightGray}}>
              {/* <Text>Home</Text>  */}
@@ -307,6 +376,14 @@ const Home =() => {
 
              {/* Category in header section */}
              {renderCategoryHeader()}
+
+             <ScrollView contentContainerStyle={{paddingBottom: 60, backgroundColor:COLORS.white,}}>
+                 {
+                     viewMode == "menu" &&
+                     <View>{renderCategoryList()}</View>
+                 }
+
+             </ScrollView>
         </View>
     )
 }

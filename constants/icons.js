@@ -11,6 +11,8 @@ export const healthcare = require("../assets/icons/healthcare.png");
 export const more = require("../assets/icons/more.png");
 export const calender = require("../assets/icons/calender.png");
 export const menu = require("../assets/icons/menu_icon.png");
+export const beauty = require("../assets/icons/beauty.png");
+
 
 
 
@@ -29,7 +31,8 @@ export default{
     healthcare,
     more,
     calender,
-    menu
+    menu,
+    beauty
 
 }
 
