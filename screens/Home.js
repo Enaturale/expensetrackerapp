@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import {Text, View, TouchableOpacity, Image, ScrollView, FlatList, StyleSheet} from "react-native";
+import React, {useState, useRef} from "react";
+import {Text, View, TouchableOpacity, Image, ScrollView, FlatList, StyleSheet, Animated} from "react-native";
 
 import {COLORS, FONTS, SIZES, icons} from '../constants';
 
 const Home =() => {
 
-    const confirmStatus="C"
-    const pendingStatus="P"
+    const confirmStatus="c"
+    const pendingStatus="p"
 
     let Categories =[
         {
@@ -196,6 +196,8 @@ const Home =() => {
     const [selectedCategory, setSelectedCategory] = useState(null);
     const [showMoreToggle, setShowMoreToggle] = useState(false);
 
+    const categoryListHeightAnimatonValue = useRef(new Animated.Value(115)).current;
+
     function renderNavBar(){
         return(
             <View style={{
@@ -319,6 +321,7 @@ const Home =() => {
         )
     }
 
+    // For category list
     function renderCategoryList(){
         const renderItem=({item}) =>{
             return(
@@ -354,14 +357,14 @@ const Home =() => {
         return(
             <View>
                 {/* <Text>Hello</Text> */}
-                <View>
+                <Animated.View style={{height: categoryListHeightAnimatonValue}}>
                     <FlatList 
                     data={categories}
                     renderItem={renderItem}
                     keyExtractor={item => `${item.id}`}   
                     numColumns={2}                 
                     />
-                </View>
+                </Animated.View>
 
                 <TouchableOpacity
                   style={{
@@ -370,16 +373,35 @@ const Home =() => {
                       justifyContent:'center',
                   }}
                   onPress={() => {
+                      if(showMoreToggle){
+                          Animated.timing(categoryListHeightAnimatonValue, {
+                              toValue: 115,
+                              duration: 300,
+                              useNativeDriver: false
+                          }).start()
+                      }
+                      else{
+                        Animated.timing(categoryListHeightAnimatonValue, {
+                            toValue: 172.5,
+                            duration: 300,
+                            useNativeDriver: false
+                        }).start()
+
+                      }
                       setShowMoreToggle(!showMoreToggle)
                   }}                  
                   >
-                      <Text style={{...FONTS.body4}}>{showMoreToggle ? "Less" : "More"}</Text>
+                      <Text style={{...FONTS.body4}}>{showMoreToggle ? "LESS" : "MORE"}</Text>
                       <Image source={ showMoreToggle ? icons.up_arrow : icons.down_arrow } 
-                        style={{marginLeft:5, width:15, height:15, alignSelf:'center', color: COLORS.red}} />
+                        style={{marginLeft:5, width:15, height:15, 
+                         alignSelf:'center', color: COLORS.red}} />
                 </TouchableOpacity>
             </View>
         )
     }
+
+    
+
 
     return(
         <View style={{flex: 1, backgroundColor: COLORS.lightGray}}>
@@ -404,7 +426,10 @@ const Home =() => {
              <ScrollView contentContainerStyle={{paddingBottom: 60, backgroundColor:COLORS.white,}}>
                  {
                      viewMode == "menu" &&
-                     <View>{renderCategoryList()}</View>
+                     <View>
+                         {renderCategoryList()}
+                         {renderIncomingExpenses()}
+                    </View>
                  }
 
              </ScrollView>
