@@ -391,15 +391,42 @@ const Home =() => {
                       setShowMoreToggle(!showMoreToggle)
                   }}                  
                   >
-                      <Text style={{...FONTS.body4}}>{showMoreToggle ? "LESS" : "MORE"}</Text>
+                      <Text style={{...FONTS.body4, color: COLORS.red}}>{showMoreToggle ? "LESS" : "MORE"}</Text>
                       <Image source={ showMoreToggle ? icons.up_arrow : icons.down_arrow } 
-                        style={{marginLeft:5, width:15, height:15, 
-                         alignSelf:'center', color: COLORS.red}} />
+                        style={{marginLeft:8, width:15, height:15, 
+                         alignSelf:'center', color: COLORS.primary}} />
                 </TouchableOpacity>
             </View>
         )
     }
 
+
+    function renderIncomingExpenses(){
+        let allExpenses = selectedCategory ? selectedCategory.expenses : []
+        
+        let incomingExpenses = allExpenses.filter(a => a.status == "P")
+        return(
+            <View>
+            <View style={{padding:SIZES.padding}}>
+                <Text style={{color: COLORS.red, ...FONTS.h3}}>INCOMING EXPENSES</Text>
+                <Text style={{color: COLORS.primary, ...FONTS.body3}}>10 total</Text>
+            </View>
+            <View>
+
+                {
+                    incomingExpenses.length > 0 && 
+                    <FlatList />
+                }
+                {
+                    incomingExpenses.length == 0 && 
+                    <View style={{alignItems:'center', justifyContent:'center', height: 200}}>
+                        <Text  style={{color:COLORS.red, ...FONTS.h3}}>No Records!</Text>
+                    </View>
+                }
+            </View>
+            </View>
+        )
+    }
     
 
 
